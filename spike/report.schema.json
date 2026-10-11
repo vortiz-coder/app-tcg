@@ -1,0 +1,328 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "games": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "game": {
+            "type": "string",
+            "enum": [
+              "pokemon",
+              "mtg",
+              "yugioh",
+              "onepiece",
+              "lorcana",
+              "riftbound"
+            ]
+          },
+          "catalog": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string",
+                "format": "uri"
+              },
+              "auth": {
+                "type": "string",
+                "enum": [
+                  "none",
+                  "key",
+                  "paid"
+                ]
+              },
+              "termsUrl": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "format": "uri"
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "termsSummary": {
+                "type": "string"
+              },
+              "rateLimit": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "sets": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "cards": {
+                "anyOf": [
+                  {
+                    "type": "integer",
+                    "minimum": -9007199254740991,
+                    "maximum": 9007199254740991
+                  },
+                  {
+                    "type": "null"
+                  }
+                ]
+              },
+              "fields": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "boolean"
+                  },
+                  "number": {
+                    "type": "boolean"
+                  },
+                  "rarity": {
+                    "type": "boolean"
+                  },
+                  "image": {
+                    "type": "boolean"
+                  },
+                  "language": {
+                    "type": "boolean"
+                  },
+                  "finish": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "name",
+                  "number",
+                  "rarity",
+                  "image",
+                  "language",
+                  "finish"
+                ],
+                "additionalProperties": false
+              },
+              "crossIds": {
+                "type": "object",
+                "properties": {
+                  "tcgplayer": {
+                    "type": "boolean"
+                  },
+                  "cardmarket": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "tcgplayer",
+                  "cardmarket"
+                ],
+                "additionalProperties": false
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "ok",
+                  "blocked"
+                ]
+              },
+              "blockedReason": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "source",
+              "url",
+              "auth",
+              "termsUrl",
+              "termsSummary",
+              "rateLimit",
+              "sets",
+              "cards",
+              "fields",
+              "crossIds",
+              "status",
+              "blockedReason"
+            ],
+            "additionalProperties": false
+          },
+          "prices": {
+            "type": "object",
+            "properties": {
+              "eur": {
+                "type": "object",
+                "properties": {
+                  "source": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "updateFrequency": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "coveragePct": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "ok",
+                      "blocked"
+                    ]
+                  },
+                  "blockedReason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "source",
+                  "url",
+                  "updateFrequency",
+                  "coveragePct",
+                  "status",
+                  "blockedReason"
+                ],
+                "additionalProperties": false
+              },
+              "usd": {
+                "type": "object",
+                "properties": {
+                  "source": {
+                    "type": "string"
+                  },
+                  "url": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "updateFrequency": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "coveragePct": {
+                    "anyOf": [
+                      {
+                        "type": "number",
+                        "minimum": 0,
+                        "maximum": 100
+                      },
+                      {
+                        "type": "null"
+                      }
+                    ]
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "ok",
+                      "blocked"
+                    ]
+                  },
+                  "blockedReason": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "source",
+                  "url",
+                  "updateFrequency",
+                  "coveragePct",
+                  "status",
+                  "blockedReason"
+                ],
+                "additionalProperties": false
+              }
+            },
+            "required": [
+              "eur",
+              "usd"
+            ],
+            "additionalProperties": false
+          },
+          "sampleSet": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "joinPct": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 100
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "verdict": {
+            "type": "string",
+            "pattern": "^(PASS|FAIL|UNDECIDABLE_UNDER\\(.+\\))$"
+          }
+        },
+        "required": [
+          "game",
+          "catalog",
+          "prices",
+          "sampleSet",
+          "joinPct",
+          "verdict"
+        ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "required": [
+    "games"
+  ],
+  "additionalProperties": false
+}

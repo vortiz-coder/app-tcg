@@ -1,0 +1,16 @@
+{
+  "tabs": { "collection": "Collection", "search": "Search", "profile": "Profile" },
+  "auth": {
+    "title": "Sign in to your collection",
+    "email": "Email",
+    "sendCode": "Send code",
+    "code": "6-digit code",
+    "verify": "Verify",
+    "changeEmail": "Change email",
+    "google": "Continue with Google",
+    "apple": "Continue with Apple",
+    "or": "or"
+  },
+  "profile": { "signOut": "Sign out" },
+  "errors": { "generic": "Something went wrong. Please try again.", "invalidEmail": "Invalid email", "invalidCode": "Wrong or expired code" }
+}

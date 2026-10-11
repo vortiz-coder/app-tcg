@@ -1,0 +1,70 @@
+# FND-06: every PR runs typecheck, lint, jest, pgTAP and Maestro (Android emulator).
+name: ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  checks: # FND-01, FND-05
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm lint
+      - run: pnpm test
+
+  secrets: # FND-08: no service_role anywhere in the app
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: "! git grep -i service_role -- apps/"
+
+  db: # FND-04
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: supabase/setup-cli@v1
+        with: { version: 2.120.0 }
+      - run: supabase db start
+      - run: supabase test db
+
+  e2e: # FND-03, FND-07
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22, cache: pnpm }
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: 17 }
+      - uses: supabase/setup-cli@v1
+        with: { version: 2.120.0 }
+      - run: pnpm install --frozen-lockfile
+      - run: supabase start
+      - name: Point the E2E build at local Supabase (emulator sees the host as 10.0.2.2)
+        run: |
+          eval "$(supabase status -o env)"
+          echo "EXPO_PUBLIC_SUPABASE_URL=http://10.0.2.2:54321" >> "$GITHUB_ENV"
+          echo "EXPO_PUBLIC_SUPABASE_ANON_KEY=$ANON_KEY" >> "$GITHUB_ENV"
+          echo "E2E=1" >> "$GITHUB_ENV"
+      - run: pnpm --filter mobile exec expo prebuild --platform android --no-install
+      - run: ./gradlew assembleRelease
+        working-directory: apps/mobile/android
+      - run: curl -fsSL "https://get.maestro.mobile.dev" | bash
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules && sudo udevadm trigger --name-match=kvm
+      - uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          arch: x86_64
+          script: |
+            adb install apps/mobile/android/app/build/outputs/apk/release/app-release.apk
+            $HOME/.maestro/bin/maestro test apps/mobile/e2e || $HOME/.maestro/bin/maestro test apps/mobile/e2e

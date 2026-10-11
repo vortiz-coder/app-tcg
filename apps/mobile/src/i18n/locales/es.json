@@ -1,0 +1,16 @@
+{
+  "tabs": { "collection": "Colección", "search": "Buscar", "profile": "Perfil" },
+  "auth": {
+    "title": "Entra en tu colección",
+    "email": "Email",
+    "sendCode": "Enviar código",
+    "code": "Código de 6 dígitos",
+    "verify": "Verificar",
+    "changeEmail": "Cambiar email",
+    "google": "Continuar con Google",
+    "apple": "Continuar con Apple",
+    "or": "o"
+  },
+  "profile": { "signOut": "Cerrar sesión" },
+  "errors": { "generic": "Algo ha fallado. Inténtalo de nuevo.", "invalidEmail": "Email no válido", "invalidCode": "Código incorrecto o caducado" }
+}

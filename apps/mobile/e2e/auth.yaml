@@ -1,0 +1,22 @@
+# FND-03: email OTP against local Supabase; the code is read from its Mailpit inbox.
+appId: com.apptcg.app
+---
+- launchApp:
+    clearState: true
+- evalScript: ${output.email = 'e2e' + Date.now() + '@test.local'}
+- tapOn:
+    id: input-email
+- inputText: ${output.email}
+- tapOn:
+    id: btn-send-code
+- runScript:
+    file: scripts/get-otp.js
+    env:
+      EMAIL: ${output.email}
+- tapOn:
+    id: input-code
+- inputText: ${output.otp}
+- tapOn:
+    id: btn-verify
+- assertVisible:
+    id: screen-collection

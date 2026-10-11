@@ -1,0 +1,16 @@
+{
+  "name": "spike",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx run.ts"
+  },
+  "dependencies": {
+    "tsx": "4.23.15",
+    "zod": "4.6.6"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "typescript": "^5"
+  }
+}

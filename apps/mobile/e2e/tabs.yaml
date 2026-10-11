@@ -1,0 +1,16 @@
+# FND-07: the three tabs are reachable after sign-in.
+appId: com.apptcg.app
+---
+- runFlow: auth.yaml
+- tapOn:
+    id: tab-search
+- assertVisible:
+    id: screen-search
+- tapOn:
+    id: tab-profile
+- assertVisible:
+    id: screen-profile
+- tapOn:
+    id: tab-collection
+- assertVisible:
+    id: screen-collection

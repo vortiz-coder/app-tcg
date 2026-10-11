@@ -1,0 +1,292 @@
+{
+  "games": [
+    {
+      "game": "mtg",
+      "catalog": {
+        "source": "scryfall",
+        "url": "https://api.scryfall.com",
+        "auth": "none",
+        "termsUrl": "https://scryfall.com/docs/api",
+        "termsSummary": "Uso libre con User-Agent/Accept; prohibido paywall de sus datos, crear juegos nuevos o implicar endorsement; imágenes sin alterar. Recomiendan cachear ≥24h y usar bulk data diario.",
+        "rateLimit": "10 req/s general; 2 req/s en /cards/search; bulk en *.scryfall.io sin límite",
+        "sets": 1059,
+        "cards": 118624,
+        "fields": {
+          "name": true,
+          "number": true,
+          "rarity": true,
+          "image": true,
+          "language": true,
+          "finish": true
+        },
+        "crossIds": {
+          "tcgplayer": true,
+          "cardmarket": true
+        },
+        "status": "ok",
+        "blockedReason": null
+      },
+      "prices": {
+        "eur": {
+          "source": "scryfall (Cardmarket)",
+          "url": "https://api.scryfall.com",
+          "updateFrequency": "daily",
+          "coveragePct": 100,
+          "status": "ok",
+          "blockedReason": null
+        },
+        "usd": {
+          "source": "scryfall (TCGplayer)",
+          "url": "https://api.scryfall.com",
+          "updateFrequency": "daily",
+          "coveragePct": 100,
+          "status": "ok",
+          "blockedReason": null
+        }
+      },
+      "sampleSet": "fra",
+      "joinPct": 100,
+      "verdict": "PASS"
+    },
+    {
+      "game": "pokemon",
+      "catalog": {
+        "source": "tcgdex",
+        "url": "https://api.tcgdex.net/v2/en",
+        "auth": "none",
+        "termsUrl": "https://tcgdex.dev/faq",
+        "termsSummary": "API gratuita sin key; base de datos open source (repo cards-database, licencia MIT). Sin rate limit publicado (\"be considerate\"), recomiendan cachear. Los precios (Cardmarket/TCGplayer) no tienen términos propios publicados.",
+        "rateLimit": null,
+        "sets": 220,
+        "cards": 23998,
+        "fields": {
+          "name": true,
+          "number": true,
+          "rarity": true,
+          "image": true,
+          "language": true,
+          "finish": true
+        },
+        "crossIds": {
+          "tcgplayer": true,
+          "cardmarket": true
+        },
+        "status": "ok",
+        "blockedReason": null
+      },
+      "prices": {
+        "eur": {
+          "source": "tcgdex (Cardmarket)",
+          "url": "https://api.tcgdex.net/v2/en",
+          "updateFrequency": "daily",
+          "coveragePct": 100,
+          "status": "ok",
+          "blockedReason": null
+        },
+        "usd": {
+          "source": "tcgcsv (TCGplayer)",
+          "url": "https://tcgcsv.com/tcgplayer",
+          "updateFrequency": "daily (~24h)",
+          "coveragePct": 100,
+          "status": "ok",
+          "blockedReason": null
+        }
+      },
+      "sampleSet": "30th",
+      "joinPct": 100,
+      "verdict": "UNDECIDABLE_UNDER(términos de tcgdex no aclaran almacenamiento de precios)"
+    },
+    {
+      "game": "yugioh",
+      "catalog": {
+        "source": "ygoprodeck",
+        "url": "https://db.ygoprodeck.com/api/v7",
+        "auth": "none",
+        "termsUrl": "https://ygoprodeck.com/api-guide/",
+        "termsSummary": "API gratuita sin key; exigen descargar y guardar los datos en local e imágenes re-alojadas (no hotlink) bajo pena de blacklist. Textos e imágenes © Konami/4K Media. Sin restricción comercial explícita.",
+        "rateLimit": "20 req/s (exceso = bloqueo 1 h)",
+        "sets": 1035,
+        "cards": 38713,
+        "fields": {
+          "name": true,
+          "number": true,
+          "rarity": true,
+          "image": true,
+          "language": true,
+          "finish": false
+        },
+        "crossIds": {
+          "tcgplayer": false,
+          "cardmarket": false
+        },
+        "status": "ok",
+        "blockedReason": null
+      },
+      "prices": {
+        "eur": {
+          "source": "cardmarket price guide",
+          "url": "https://downloads.s3.cardmarket.com/productCatalog",
+          "updateFrequency": "daily",
+          "coveragePct": 0,
+          "status": "ok",
+          "blockedReason": "cardmarket: 50/50 sin número en el nombre de producto"
+        },
+        "usd": {
+          "source": "tcgcsv (TCGplayer)",
+          "url": "https://tcgcsv.com/tcgplayer",
+          "updateFrequency": "daily (~24h)",
+          "coveragePct": 96,
+          "status": "ok",
+          "blockedReason": null
+        }
+      },
+      "sampleSet": "BETB",
+      "joinPct": 96,
+      "verdict": "UNDECIDABLE_UNDER(tcgcsv sin términos publicados; redistribuye la API de TCGplayer)"
+    },
+    {
+      "game": "onepiece",
+      "catalog": {
+        "source": "optcgapi",
+        "url": "https://optcgapi.com/api",
+        "auth": "none",
+        "termsUrl": "https://optcgapi.com/about/general",
+        "termsSummary": "Gratis, sin key, sin licencia ni términos formales (\"use it for whatever you want\" informal). El autor obtiene catálogo y precios scrapeando la web (cartas activas en TCGplayer EN). Límites diarios no cuantificados.",
+        "rateLimit": "límite diario no publicado",
+        "sets": 22,
+        "cards": 3654,
+        "fields": {
+          "name": true,
+          "number": true,
+          "rarity": true,
+          "image": true,
+          "language": false,
+          "finish": false
+        },
+        "crossIds": {
+          "tcgplayer": false,
+          "cardmarket": false
+        },
+        "status": "ok",
+        "blockedReason": null
+      },
+      "prices": {
+        "eur": {
+          "source": "cardmarket price guide",
+          "url": "https://downloads.s3.cardmarket.com/productCatalog",
+          "updateFrequency": "daily",
+          "coveragePct": 0,
+          "status": "ok",
+          "blockedReason": "cardmarket: 50/50 números con varios productos (versiones), requiere elección manual"
+        },
+        "usd": {
+          "source": "optcgapi (scrape de TCGplayer)",
+          "url": "https://optcgapi.com/api",
+          "updateFrequency": "daily",
+          "coveragePct": 100,
+          "status": "ok",
+          "blockedReason": null
+        }
+      },
+      "sampleSet": "OP-17",
+      "joinPct": 100,
+      "verdict": "UNDECIDABLE_UNDER(optcgapi sin términos y con datos scrapeados por su autor: incompatible con E5 salvo aclaración)"
+    },
+    {
+      "game": "lorcana",
+      "catalog": {
+        "source": "lorcast",
+        "url": "https://api.lorcast.com/v0",
+        "auth": "none",
+        "termsUrl": "https://lorcast.com/docs/api",
+        "termsSummary": "API gratuita sin key; prohíbe cobrar por acceder a su contenido; anima a cachear ≥24h. Contenido bajo Community Code Policy de Ravensburger, sin endorsement de Disney/Ravensburger.",
+        "rateLimit": "50–100 ms entre requests (~10 req/s); *.lorcast.io sin límite",
+        "sets": 26,
+        "cards": 3469,
+        "fields": {
+          "name": true,
+          "number": true,
+          "rarity": true,
+          "image": true,
+          "language": true,
+          "finish": true
+        },
+        "crossIds": {
+          "tcgplayer": true,
+          "cardmarket": false
+        },
+        "status": "ok",
+        "blockedReason": null
+      },
+      "prices": {
+        "eur": {
+          "source": "cardmarket price guide",
+          "url": "https://downloads.s3.cardmarket.com/productCatalog",
+          "updateFrequency": "daily",
+          "coveragePct": 0,
+          "status": "ok",
+          "blockedReason": "cardmarket: 50/50 sin número en el nombre de producto"
+        },
+        "usd": {
+          "source": "lorcast (TCGplayer)",
+          "url": "https://api.lorcast.com/v0",
+          "updateFrequency": "daily",
+          "coveragePct": 100,
+          "status": "ok",
+          "blockedReason": null
+        }
+      },
+      "sampleSet": "13",
+      "joinPct": 100,
+      "verdict": "PASS"
+    },
+    {
+      "game": "riftbound",
+      "catalog": {
+        "source": "riftcodex",
+        "url": "https://api.riftcodex.com",
+        "auth": "none",
+        "termsUrl": "https://riftcodex.com/docs",
+        "termsSummary": "Fan project no oficial (sin afiliación con Riot), lectura sin key, API en WIP (v0.2). Sin licencia, términos ni rate limit publicados. Sin precios; expone tcgplayer_id por carta y cardmarket_id por set.",
+        "rateLimit": null,
+        "sets": 8,
+        "cards": 1451,
+        "fields": {
+          "name": true,
+          "number": true,
+          "rarity": true,
+          "image": true,
+          "language": false,
+          "finish": false
+        },
+        "crossIds": {
+          "tcgplayer": false,
+          "cardmarket": false
+        },
+        "status": "ok",
+        "blockedReason": null
+      },
+      "prices": {
+        "eur": {
+          "source": "cardmarket price guide",
+          "url": "https://downloads.s3.cardmarket.com/productCatalog",
+          "updateFrequency": "daily",
+          "coveragePct": 0,
+          "status": "ok",
+          "blockedReason": "cardmarket: 50/50 sin número en el nombre de producto"
+        },
+        "usd": {
+          "source": "tcgcsv (TCGplayer)",
+          "url": "https://tcgcsv.com/tcgplayer",
+          "updateFrequency": "daily (~24h)",
+          "coveragePct": 86,
+          "status": "ok",
+          "blockedReason": null
+        }
+      },
+      "sampleSet": "VEN",
+      "joinPct": 86,
+      "verdict": "FAIL"
+    }
+  ]
+}

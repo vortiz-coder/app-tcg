@@ -8,8 +8,8 @@ Lo visual (layout, color, tipografía, componentes, estados) lo define Claude De
 | Prompt | Resultado | Estado |
 |---|---|---|
 | P0 · Sistema de diseño | [`Claude outputs/p00-design-system.html`](../../../Claude%20outputs/p00-design-system.html) · design system "Vitrina" en claude.ai (tokens, README, componentes) | Entregado 2026-10-11, pendiente de revisión de Vik |
-| P1 · Login (FND-03) | — | pendiente |
-| P2 · Navegación y pantallas vacías (FND-07) | — | pendiente |
+| P1 · Login (FND-03) | [`Claude outputs/p01-login.html`](../../../Claude%20outputs/p01-login.html) | Entregado 2026-10-11, pendiente de revisión de Vik |
+| P2 · Navegación y pantallas vacías (FND-07) | [`Claude outputs/p02-navegacion.html`](../../../Claude%20outputs/p02-navegacion.html) | Entregado 2026-10-11, pendiente de revisión de Vik |
 
 ## Estructura (solo lo que pide F1)
 ```

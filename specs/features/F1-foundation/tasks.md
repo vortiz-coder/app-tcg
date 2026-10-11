@@ -13,15 +13,18 @@ Docker Desktop (⚙ T4–T6) · Java 17 + Android SDK/emulador + Maestro (⚙ T1
 - [x] **F1-T3** `packages/shared`: `package.json`, `tsconfig.json`, `src/index.ts`.
   Done = `pnpm typecheck` → exit 0.  (FND-01)
   ↳ 2026-10-11 PASS: @app-tcg/shared tsc --noEmit (exit 0)
-- [ ] **F1-T4** ⚙ Supabase local: `supabase/config.toml` (OTP email 6 dígitos, Google/Apple con `env(...)`), `supabase/templates/otp.html`, devDep `supabase` en `package.json` raíz.
+- [x] **F1-T4** ⚙ Supabase local: `supabase/config.toml` (OTP email 6 dígitos, Google/Apple con `env(...)`), `supabase/templates/otp.html`, devDep `supabase` en `package.json` raíz.
   Done = `pnpm exec supabase start` → exit 0 y muestra "API URL".  (FND-03, FND-08)
   ↳ 2026-10-11 UNDECIDABLE_UNDER(Docker local): archivos escritos; `supabase start` → "docker: command not found"
-- [ ] **F1-T5** ⚙ Migración `profiles` + trigger + RLS y su test pgTAP (`supabase/migrations/<ts>_profiles.sql`, `supabase/tests/profiles.test.sql`).
+  ↳ 2026-10-11 PASS: `pnpm exec supabase start` exit 0 · "API_URL":"http://127.0.0.1:54321" · migración profiles aplicada
+- [x] **F1-T5** ⚙ Migración `profiles` + trigger + RLS y su test pgTAP (`supabase/migrations/<ts>_profiles.sql`, `supabase/tests/profiles.test.sql`).
   Done = `pnpm exec supabase db reset && pnpm exec supabase test db` → "All tests successful".  (FND-04)
   ↳ 2026-10-11 UNDECIDABLE_UNDER(Docker local): migración y test pgTAP (8 asserts) escritos, sin ejecutar
-- [ ] **F1-T6** ⚙ Tipos DB: `pnpm gen:types` → `packages/shared/src/database.ts`, exportado desde `src/index.ts`.
+  ↳ 2026-10-11 PASS: `supabase test db` → "All tests successful. Files=1, Tests=8 · Result: PASS"
+- [x] **F1-T6** ⚙ Tipos DB: `pnpm gen:types` → `packages/shared/src/database.ts`, exportado desde `src/index.ts`.
   Done = `pnpm gen:types && pnpm typecheck` → exit 0 y `grep -c profiles packages/shared/src/database.ts` ≥ 1.  (FND-01, FND-04)
   ↳ 2026-10-11 UNDECIDABLE_UNDER(Docker local): `supabase gen types --local` necesita la DB local
+  ↳ 2026-10-11 PASS: `pnpm gen:types && pnpm typecheck` exit 0 · `grep -c profiles database.ts` = 1
 - [x] **F1-T7** App Expo: `apps/mobile/package.json` (SDK 57), `app.config.ts` (scheme `apptcg`, env), `tsconfig.json` (extiende base, strict).
   Done = `pnpm install && pnpm --filter mobile typecheck` → exit 0.  (FND-02)
   ↳ 2026-10-11 PASS: mobile tsc --noEmit (exit 0). Extra: apps/mobile/expo-env.d.ts (tipos de process.env de Expo)

@@ -100,3 +100,4 @@ Secretos de Google/Apple solo en Supabase (dashboard) / env de CI; nunca en `EXP
 | T9–T13 | `i18next/no-literal-string` excluye props técnicas: `name`, `href`, `testID`, `autoCapitalize`, `autoComplete`, `keyboardType`, `tabBarButtonTestID` | No son texto de UI; los textos visibles en atributos (`title`, `placeholder`) se siguen detectando |
 | T12 | + `app/index.tsx` (redirige `/` a `/collection`) | Sin ruta índice, `/` no existe |
 | T14 | `supabase.ts` con `flowType: "pkce"` | Necesario para el intercambio de código de Google OAuth |
+| T16 | `app/index.tsx` redirige según sesión (`/collection` o `/sign-in`); CI sube `~/.maestro/tests` como artefacto si falla | e2e en CI: la redirección incondicional a la ruta protegida dejaba la app sin pantalla de login; los artefactos permiten diagnosticar sin emulador local |

@@ -49,10 +49,13 @@ Docker Desktop (⚙ T4–T6) · Java 17 + Android SDK/emulador + Maestro (⚙ T1
 - [ ] **F1-T14** ⚙ Google + Apple: `src/lib/oauth.ts`, botones en `sign-in.tsx`.
   Done = `pnpm typecheck && pnpm lint && pnpm --filter mobile exec expo export` → exit 0; parte manual = `UNDECIDABLE_UNDER(credenciales Google/Apple de Vik)` hasta captura en PR.  (FND-03)
   ↳ 2026-10-11 parte automática PASS: typecheck+lint exit 0 · expo export "Exported: dist" · parte manual UNDECIDABLE_UNDER(credenciales Google/Apple de Vik). + supabase.ts flowType "pkce"
-- [ ] **F1-T15** ⚙ E2E: `e2e/auth.yaml` (OTP vía Mailpit → ve Colección), `e2e/tabs.yaml` (navega las 3 tabs), `e2e/scripts/get-otp.js`; botón cerrar sesión en `profile.tsx` si hace falta → partir en T15a/T15b.
+- [x] **F1-T15** ⚙ E2E: `e2e/auth.yaml` (OTP vía Mailpit → ve Colección), `e2e/tabs.yaml` (navega las 3 tabs), `e2e/scripts/get-otp.js`; botón cerrar sesión en `profile.tsx` si hace falta → partir en T15a/T15b.
   Done = `pnpm e2e` → Maestro "Flow Passed" en `auth.yaml` y `tabs.yaml`.  (FND-03, FND-07)
   ↳ 2026-10-11 UNDECIDABLE_UNDER(Maestro + emulador Android local): flujos escritos; `pnpm e2e` → "maestro" no reconocido. Sin botón de logout: `launchApp clearState` deja la app sin sesión
-- [ ] **F1-T16** ⚙ CI: `.github/workflows/ci.yml` (jobs checks, db, e2e, secrets) y PR de prueba.
+  ↳ 2026-10-12 PASS (CI run 38187981824, job e2e): "[Passed] auth (19s) · [Passed] tabs (24s) · 2/2 Flows Passed in 43s". Fix previo: app/index.tsx redirige según sesión
+- [x] **F1-T16** ⚙ CI: `.github/workflows/ci.yml` (jobs checks, db, e2e, secrets) y PR de prueba.
   Done = `gh pr checks <PR>` → todos los checks "pass".  (FND-06, FND-08)
   ↳ 2026-10-11 UNDECIDABLE_UNDER(repo en GitHub + gh): ci.yml escrito (jobs checks, secrets, db, e2e), YAML válido (js-yaml); sin PR no hay check
-- [ ] **F1-T17** Verificación por el subagente `verifier` contra `requirements.md` y registro en `specs/02-roadmap.md#registro`.
+  ↳ 2026-10-12 PASS: `gh pr checks 1` (vortiz-coder/app-tcg#1) → checks pass · secrets pass · db pass · e2e pass
+- [x] **F1-T17** Verificación por el subagente `verifier` contra `requirements.md` y registro en `specs/02-roadmap.md#registro`.
+  ↳ 2026-10-12 verifier: FND-01, 02, 04, 05, 06, 07, 08 PASS · FND-03 UNDECIDABLE_UNDER(credenciales Google/Apple de Vik + prueba manual con captura en PR #1); OTP email PASS en CI. Global F1: UNDECIDABLE_UNDER(ídem)

@@ -28,7 +28,7 @@ apps/mobile/              Expo SDK 57 + Expo Router
   src/lib/auth.tsx        SessionProvider (onAuthStateChange) + hook useSession
   src/lib/oauth.ts        Google: signInWithOAuth + WebBrowser.openAuthSessionAsync · Apple: expo-apple-authentication + signInWithIdToken
   src/i18n/               i18next + expo-localization; locales/es.json (por defecto), en.json
-  __tests__/no-literal-strings.test.ts   ejecuta ESLint (API) sobre app/ y src/ → 0 errores i18next
+  __tests__/no-literal-strings.test.js   ejecuta el CLI de ESLint (subproceso) sobre app/ y src/ → 0 errores i18next
   e2e/auth.yaml, e2e/tabs.yaml, e2e/scripts/get-otp.js (lee el código de Mailpit/Inbucket local)
 packages/shared/src/      database.ts (generado por `pnpm gen:types`), index.ts
 supabase/config.toml      auth: email OTP (6 dígitos), Google y Apple con secretos `env(...)`
@@ -63,13 +63,13 @@ Sin sesión → redirige a sign-in; con sesión → tabs. Cada elemento interact
 | Job | Pasos | Req |
 |---|---|---|
 | `checks` | pnpm install → typecheck → lint → test (Jest) | FND-01, 05 |
-| `db` | `supabase start` → `supabase test db` | FND-04 |
+| `db` | `supabase db start` → `supabase test db` | FND-04 |
 | `e2e` | `supabase start` → `expo prebuild -p android` → `gradlew assembleRelease` (env E2E: URL `http://10.0.2.2:54321`) → `reactivecircus/android-emulator-runner` → `maestro test apps/mobile/e2e` | FND-03, 07 |
 | `secrets` | `git grep -i service_role -- apps/` debe estar vacío | FND-08 |
 Secretos de Google/Apple solo en Supabase (dashboard) / env de CI; nunca en `EXPO_PUBLIC_*`.
 
 ## Dependencias nuevas (Ask First: se aprueban al aprobar este spec)
-- Raíz (dev): `typescript`, `eslint`, `typescript-eslint`, `eslint-config-expo`, `eslint-plugin-i18next`, `supabase` (CLI por npm, evita instalación global).
+- Raíz (dev): `typescript`, `eslint`, `eslint-config-expo` (trae el parser de TypeScript), `eslint-plugin-i18next`, `supabase` (CLI por npm, evita instalación global).
 - `apps/mobile`: las que fija Expo SDK 57 (`expo`, `react`, `react-native`, `expo-router` y sus peers), `@supabase/supabase-js`, `@react-native-async-storage/async-storage`, `@tanstack/react-query`, `i18next`, `react-i18next`, `expo-localization`, `expo-web-browser`, `expo-apple-authentication`, `expo-build-properties` (HTTP claro solo en build E2E). Dev: `jest`, `jest-expo`, `@types/jest`.
 - CI (GitHub Actions de terceros): `pnpm/action-setup`, `supabase/setup-cli`, `reactivecircus/android-emulator-runner`, instalador oficial de Maestro.
 

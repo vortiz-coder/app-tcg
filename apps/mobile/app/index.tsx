@@ -1,6 +1,9 @@
 import { Redirect } from "expo-router";
+import { useSession } from "../src/lib/auth";
 
-// "/" = home = Colección; the guards in _layout send signed-out users to sign-in.
+// "/" = home: Colección when signed in, sign-in otherwise. Redirecting unconditionally to the protected
+// /collection loops back here when signed out (the guard falls back to the index route).
 export default function Index() {
-  return <Redirect href="/collection" />;
+  const session = useSession();
+  return <Redirect href={session ? "/collection" : "/sign-in"} />;
 }
